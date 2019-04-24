@@ -40,6 +40,8 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'crispy_forms',
+    'storages',
+    'django_cleanup.apps.CleanupConfig',
 ]
 
 MIDDLEWARE = [
@@ -122,25 +124,48 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/2.1/howto/static-files/
 
-STATIC_URL = '/static/'
+# STATIC_URL = '/static/'
 # STATIC_ROOT = os.path.join(BASE_DIR, 'gallery/static')
-STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles') # default location where django will collect files
+# STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles') # default location where django will collect files
 
 STATICFILES_DIRS = (
-    os.path.join(BASE_DIR, 'gallery/static'), # actual location of the gallery files
+    # actual location of the gallery files
+    os.path.join(BASE_DIR, 'gallery/static'),
 )
 
-MEDIA_ROOT = os.path.join(BASE_DIR, 'media') # <o.s. file system path> + <project base directory / project root directory> + <media folder>
-MEDIA_URL = '/media/' # Public URL - accessible through the browser
 
-STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
+# AWS S3 Storage config for assets
+AWS_ACCESS_KEY_ID = config('S3_ACCESS_ID')
+AWS_SECRET_ACCESS_KEY = config('S3_SECRET_KEY')
+AWS_STORAGE_BUCKET_NAME = config('S3_BUCKET_NAME')
 
-CRISPY_TEMPLATE_PACK = 'bootstrap4' # CSS definition that crispy forms will look for in order to style its components
+AWS_S3_CUSTOM_DOMAIN = '%s.s3.amazonaws.com' % AWS_STORAGE_BUCKET_NAME
 
-LOGIN_REDIRECT_URL = 'gallery_home' # This defines where to redirect the user once succesfully logs in
-# This define our actual login page, so Django knows how to find it and doesn't use the default for 
+AWS_S3_OBJECT_PARAMETERS = {
+    'CacheControl': 'max-age=86400',
+}
+
+AWS_LOCATION = 'static'
+STATICFILES_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
+STATIC_URL = "https://%s/%s/" % (AWS_S3_CUSTOM_DOMAIN, AWS_LOCATION)
+
+DEFAULT_FILE_STORAGE = 'weddingbook.storage_backends.MediaStorage'
+#DEFAULT_FILE_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
+
+
+# MEDIA_ROOT = os.path.join(BASE_DIR, 'media') # <o.s. file system path> + <project base directory / project root directory> + <media folder>
+# MEDIA_URL = '/media/' # Public URL - accessible through the browser
+
+#STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
+
+# CSS definition that crispy forms will look for in order to style its components
+CRISPY_TEMPLATE_PACK = 'bootstrap4'
+
+# This defines where to redirect the user once succesfully logs in
+LOGIN_REDIRECT_URL = 'gallery_home'
+# This define our actual login page, so Django knows how to find it and doesn't use the default for
 # Automatic redirects (when a user tries to access a protected template without authenticating, he gets redirected by Django to the default login template)
-LOGIN_URL = 'login' 
+LOGIN_URL = 'login'
 
 # Email settings
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
