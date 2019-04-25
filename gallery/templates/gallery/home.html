@@ -5,7 +5,7 @@
     <div class="container content-section">
         <div class="row d-flex justify-content-center">
             {% for image in images %}
-                <a href="#" class="card product col-lg-3">
+                <a href="{% url 'image_detail' image.id %}" class="card product col-lg-3">
                     <img alt="Image" src="{{ image.image.url }}" class="card-img-top">
                     <div class="card-block bottom-align">
                         <h5 class="card-title mt-3">{{ image.title|title }}</h5>
