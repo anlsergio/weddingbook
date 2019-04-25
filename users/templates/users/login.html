@@ -1,0 +1,29 @@
+{% extends "gallery/base.html" %}
+{% load crispy_forms_tags %}
+
+{% block content %}
+<div class="content-section block-center">
+    <form method="POST" class="ml-3 mr-3">
+        {% csrf_token %}
+        <fieldset class="form-group">
+            <legend class="border-bottom mb-4">
+                Welcome back!
+            </legend>
+            {{ form|crispy }}
+        </fieldset>
+        <div class="form-group">
+            <button class="btn btn-outline-info" type="submit">
+                Login
+            </button>
+            <small class="text-muted ml-2">
+                <a href="{% url 'password_reset' %}">Forgot Password?</a>
+            </small>
+        </div>
+    </form>
+    <div class="border-top pt-3">
+        <small class="text-muted">
+            New here? Feel free to join us! <a class="ml-2" href="{% url 'register' %}">Sign Up Now</a>
+        </small>
+    </div>
+</div>
+{% endblock content %}
