@@ -1,18 +1,24 @@
-{% extends "gallery/base.html" %}
+{% extends "gallery/base.html" %} {% block content %}
 
-{% block content %}
 <div class="col-md-12">
-    <div class="container content-section">
-        <div class="row d-flex justify-content-center">
-            <img alt="Image" src="{{ object.image.url }}" class="card-img-top">
-            <div class="card-block bottom-align">
-                <h5 class="card-title mt-3">{{ object.title|title }}</h5>
-                <small class="text-muted">Published: {{ object.date_posted|date:"F d, Y" }}</small>
-                <div class="article ml-auto">
-                    <i class="far fa-heart">3</i>
-                </div>
-            </div>
+  <div class="container content-section">
+    <div class="row d-flex justify-content-center">
+      <img alt="Image" src="{{ object.image.url }}" class="card-img-top" />
+      <div class="card-block bottom-align">
+        <h5 class="card-title mt-3">{{ object.title | title }}</h5>
+        <div class="article ml-auto">
+            <a class="like-btn" 
+                data-href="{% url 'api_image_like' object.id %}" 
+                href="{% url 'image_like' object.id %}"
+                data-likes="{{ object.likes.count }}">
+                {% if user in object.likes.all %} Unlike {% else %} Like {% endif %}
+            </a>
+            <p class="likes">
+              {{ object.likes.count }} Likes
+            </p>
         </div>
+      </div>
     </div>
+  </div>
 </div>
 {% endblock content %}
