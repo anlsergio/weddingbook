@@ -1,5 +1,5 @@
 from django.db import models
-
+from django.urls import reverse
 from PIL import Image as Image_PIL
 
 # Create your models here.
@@ -12,6 +12,7 @@ class Image(models.Model):
     # thumbnail = models.ImageField(upload_to='gallery_imgs', null=True)
     likes = models.IntegerField(default=0)
     approved = models.BooleanField(default=False)
+    #liked = models.BooleanField(default=False)
 
     def save(self, *args, **kwargs):
         super().save(*args, **kwargs)
@@ -25,3 +26,6 @@ class Image(models.Model):
 
     def __str__(self):
         return self.title
+
+    def get_absolute_url(self):
+        return reverse('image_detail', kwargs={'pk': self.pk})
