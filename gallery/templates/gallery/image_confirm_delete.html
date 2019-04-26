@@ -1,0 +1,23 @@
+{% extends "gallery/base.html" %}
+
+{% block content %}
+    <div class="content-section block-center">
+        <form method="POST" enctype="multipart/form-data">
+            {% csrf_token %}
+            <fieldset class="form-group">
+                <legend class="border-bottom mb-4">
+                    Discard Photo
+                </legend>
+                <h3>Are you sure you want to discard the photo?"</h3>
+            </fieldset>
+            <div class="form-group d-flex justify-content-center">
+                <button class="btn btn-danger" type="submit">
+                    Yes, go ahead!
+                </button>
+                <a class="btn btn-outline-secondary ml-auto" href="{% url 'image_detail' object.id %}">
+                    Nah, I've changed my mind
+                </a>
+            </div>
+        </form>
+    </div>
+{% endblock content %}

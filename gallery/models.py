@@ -14,6 +14,7 @@ class Image(models.Model):
     image = models.ImageField(upload_to='gallery_imgs')
     likes = models.ManyToManyField(
         settings.AUTH_USER_MODEL, blank=True, related_name='image_likes')
+    total_likes = models.IntegerField(default=0)
     approved = models.BooleanField(default=False)
 
     def save(self, *args, **kwargs):

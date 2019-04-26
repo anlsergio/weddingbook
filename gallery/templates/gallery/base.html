@@ -44,7 +44,10 @@
                 <!-- Navbar Right Side -->
                 <div class="navbar-nav">
                     <a class="nav-item nav-link" href="{% url 'image_create' %}"><i class="fas fa-plus"></i> Upload Photo</a>
-		    {% if user.is_authenticated %}
+                    {% if user.is_authenticated %}
+                        {% if user.is_superuser %}
+                            <a class="nav-item nav-link" href="{% url 'waiting_approval' %}">Waiting List</a>
+                        {% endif %}
                         <a class="nav-item nav-link" href="{% url 'profile' %}">My Account</a>
                         <a class="nav-item nav-link" href="{% url 'logout' %}">Logout</a>
                     {% else %}

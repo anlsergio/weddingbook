@@ -2,6 +2,12 @@
 
 <div class="col-md-12">
   <div class="container content-section">
+    {% if user.is_superuser %}
+      <div class=" row d-flex justify-content-center">
+          <a class="btn btn-danger btn-sm mt-1 mb-1" href="{% url 'image_delete' object.id %}">Delete</a>
+          <a class="btn btn-secondary btn-sm mt-1 mb-1 ml-auto" href="{% url 'image_update' object.id %}">Review Approval</a>
+      </div>
+    {% endif %}
     <div class="row d-flex justify-content-center">
       <img alt="Image" src="{{ object.image.url }}" class="card-img-top" />
       <div class="card-block bottom-align">
