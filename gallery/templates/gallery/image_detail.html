@@ -2,25 +2,29 @@
 
 <div class="col-md-12">
   <div class="container content-section">
-    {% if user.is_superuser %}
-      <div class=" row d-flex justify-content-center">
-          <a class="btn btn-danger btn-sm mt-1 mb-1" href="{% url 'image_delete' object.id %}">Delete</a>
-          <a class="btn btn-secondary btn-sm mt-1 mb-1 ml-auto" href="{% url 'image_update' object.id %}">Review Approval</a>
-      </div>
-    {% endif %}
-    <div class="row d-flex justify-content-center">
+    <div class="p-2">
+      {% if user.is_superuser %}
+        <div class=" row d-flex justify-content-center mt-2 mb-1">
+            <a class="btn btn-danger btn-sm" href="{% url 'image_delete' object.id %}">Delete</a>
+            <a class="btn btn-secondary btn-sm ml-auto" href="{% url 'image_update' object.id %}">Review Approval</a>
+        </div>
+      {% endif %}
+    </div>
+    <div class="row d-flex justify-content-center p-2">
       <img alt="Image" src="{{ object.image.url }}" class="card-img-top" />
       <div class="card-block bottom-align">
         <h5 class="card-title mt-3">{{ object.title | title }}</h5>
         <div class="article ml-auto">
+          {% if user.is_authenticated %}
             <a class="like-btn" 
                 data-href="{% url 'api_image_like' object.id %}" 
                 href="{% url 'image_like' object.id %}"
                 data-likes="{{ object.likes.count }}">
                 {% if user in object.likes.all %} Unlike {% else %} Like {% endif %}
             </a>
+          {% endif %}
             <p class="likes">
-              {{ object.likes.count }} Likes
+              {{ object.likes.count }} Like{% if object.likes.count > 1 %}s{% endif %}
             </p>
         </div>
       </div>
