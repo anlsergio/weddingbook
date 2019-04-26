@@ -2,6 +2,10 @@ from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.forms import UserCreationForm
 from django.shortcuts import redirect, render
+from django.contrib.auth.mixins import \
+    LoginRequiredMixin  # inherit this class in order to require authentication for class based views
+from django.contrib.auth.mixins import \
+    UserPassesTestMixin  # inherit this class in order to check if the user should access the view even if authenticated
 
 from .forms import UserRegisterForm, UserUpdateForm
 

@@ -4,17 +4,21 @@ from django.contrib.auth import views as auth_views
 
 from . import views
 
-from gallery.views import ImageListView, ImageCreateView, ImageDetailView, ImageLikeRedirect, ImageLikeAPIToggle
+from gallery.views import ImageListView, ImageCreateView, ImageDetailView, ImageLikeRedirect, ImageLikeAPIToggle, ImageNonApprovedListView, ImageUpdateView, ImageDeleteView, ImageByLikesListView
 from users import views as user_views
 
 
 
 urlpatterns = [
     path('', ImageListView.as_view(), name='gallery_home'),
+    path('filterbylikes/', ImageByLikesListView.as_view(), name='filtered_gallery_home'),
     path('gallery/<int:pk>/', ImageDetailView.as_view(), name='image_detail'),
     path('gallery/<int:pk>/like/', ImageLikeRedirect.as_view(), name='image_like'),
     path('gallery/api/<int:pk>/like/', ImageLikeAPIToggle.as_view(), name='api_image_like'),
     path('gallery/new/', ImageCreateView.as_view(), name='image_create'),
+    path('gallery/waiting_approval/', ImageNonApprovedListView.as_view(), name='waiting_approval'),
+    path('gallery/<int:pk>/update/', ImageUpdateView.as_view(), name='image_update'), 
+    path('gallery/<int:pk>/delete/', ImageDeleteView.as_view(), name='image_delete'),
 
     # This url is defined directly here because we want to refer to the root url while using users routes
     # Instead of doing somethin like users/register users/login, we'll can simply use /login
