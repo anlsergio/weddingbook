@@ -3,7 +3,7 @@
 This website is a wedding image gallery which includes the following features:
 
 - Public (non-authenticated) users can:
- - Register themselves
+-- Register themselves
  - Ask for password retrieval through email
  - See approved photos on gallery
  - Filter gallery listing by more recent pictures or by more liked pictures
@@ -69,6 +69,8 @@ EMAIL_PASSWD=yourpassword
 ```
 
 # Other variables from Python Decouple
+
+File: `.env`
 
 ```
 SECRET_KEY=djangos_secret_key
