@@ -1,4 +1,4 @@
-# weddingbook
+# WeddingBook
 
 This website is a wedding image gallery which includes the following features:
 
