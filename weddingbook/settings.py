@@ -123,12 +123,7 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/2.1/howto/static-files/
 
-# STATIC_URL = '/static/'
-# STATIC_ROOT = os.path.join(BASE_DIR, 'gallery/static')
-# STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles') # default location where django will collect files
-
 STATICFILES_DIRS = (
-    # actual location of the gallery files
     os.path.join(BASE_DIR, 'gallery/static'),
 )
 
@@ -149,21 +144,11 @@ STATICFILES_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
 STATIC_URL = "https://%s/%s/" % (AWS_S3_CUSTOM_DOMAIN, AWS_LOCATION)
 
 DEFAULT_FILE_STORAGE = 'weddingbook.storage_backends.MediaStorage'
-#DEFAULT_FILE_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
-
-
-# MEDIA_ROOT = os.path.join(BASE_DIR, 'media') # <o.s. file system path> + <project base directory / project root directory> + <media folder>
-# MEDIA_URL = '/media/' # Public URL - accessible through the browser
-
-#STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 
 # CSS definition that crispy forms will look for in order to style its components
 CRISPY_TEMPLATE_PACK = 'bootstrap4'
 
-# This defines where to redirect the user once succesfully logs in
 LOGIN_REDIRECT_URL = 'gallery_home'
-# This define our actual login page, so Django knows how to find it and doesn't use the default for
-# Automatic redirects (when a user tries to access a protected template without authenticating, he gets redirected by Django to the default login template)
 LOGIN_URL = 'login'
 
 # Email settings
