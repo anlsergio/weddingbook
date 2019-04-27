@@ -24,7 +24,7 @@ class ImageListView(ListView):
     model = Image
     template_name = 'gallery/home.html'
     context_object_name = 'images'
-    paginate_by = '1'
+    paginate_by = '6'
 
     def get_queryset(self):
         return Image.objects.filter(approved=True).order_by('-date_posted')
