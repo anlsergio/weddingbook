@@ -24,6 +24,7 @@ urlpatterns = [
 
     path('profile/', user_views.profile, name='profile'), 
 
+
     path('about/', views.about, name='about'),
 
     # It's a little bit different because it's a class based view
