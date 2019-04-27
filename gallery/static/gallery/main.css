@@ -6,8 +6,8 @@ body {
   font-family: 'Dancing Script', cursive;
   background: #E5E7E0;
   color: #333333;
-  margin-top: 5rem;
   display: flex;
+  margin-top: 5rem;
   flex-direction: column;
 }
 
