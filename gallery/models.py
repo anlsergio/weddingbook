@@ -1,5 +1,10 @@
-from django.db import models
+import io
+import mimetypes
+import os
+
 from django.conf import settings
+from django.core.files.storage import default_storage as storage
+from django.db import models
 from django.urls import reverse
 from PIL import Image as Image_PIL
 
@@ -18,13 +23,23 @@ class Image(models.Model):
     approved = models.BooleanField(default=False)
 
     def save(self, *args, **kwargs):
+
         super().save(*args, **kwargs)
+
 
         # During the original image saving
         # A copy of it will be saved being transformed to a lower size thumbnail
-        #img = Image_PIL.open(self.image.path)
+        image = Image_PIL.open(self.image)
+        image.thumbnail((600, 600), Image_PIL.ANTIALIAS)
+        fh = storage.open(self.image.name, "w")
+        format = 'png'  # You need to set the correct image format here
+        image.save(fh, format)
+        fh.close()
+        # img = Image_PIL.open(storage.open(self.image.name))
+        # print(img)
         # if img.height > 900 or img.width > 900:
-        #    img = img.thumbnail(900, 900)
+        #    img = img.thumbnail((900, 900))
+        #    print(img)
         #    img.save(self.image.path)
 
     def __str__(self):

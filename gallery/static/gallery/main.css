@@ -138,8 +138,13 @@ h5.card-title,
 
 .btn-info {
   text-decoration-color: transparent;
-  background-color: #0c5e6bfb;
-  border-color: #0c5e6bfb;
+  background-color: #69353F;
+  border-color: #69353F;
+}
+
+.btn-info:hover {
+  background-color: rgb(148, 80, 94);
+  border-color: #69353F;
 }
 
 .btn-outline-info {
