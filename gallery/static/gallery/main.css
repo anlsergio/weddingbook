@@ -4,8 +4,8 @@ html, body {
 
 body {
   font-family: 'Dancing Script', cursive;
-  background: #d4d3d3;
   color: #333333;
+  background: #FBECE2;
   margin-top: 5rem;
   display: flex;
   flex-direction: column;
@@ -282,7 +282,7 @@ footer h5 > a {
     padding: 3% 3% 3% 0%;
   }
 
-  .product img {
+  .image img {
     max-height: 15rem;
   }
 }
