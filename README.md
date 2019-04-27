@@ -2,23 +2,29 @@
 
 This website is a wedding image gallery which includes the following features:
 
-- Public (non-authenticated) users can:
--- Register themselves
+Public (non-authenticated) users can:
+ - Register themselves
  - Ask for password retrieval through email
  - See approved photos on gallery
  - Filter gallery listing by more recent pictures or by more liked pictures
 
-- Regular users can:
+Regular users can:
  - Log in/ Log out
  - Change profile/user info
  - Upload new photos
  - Like existing approved photos
  
-- Admin users (Wife and Husband) can:
+Admin users (Wife and Husband) can:
  - See a list of non-approved pictures (Waiting List)
  - Approve or discard pictures
  - Log in to the Django's admin page
- 
+
+
+# Application Architecture
+
+This application makes use of the Django MVC pattern, so the whole project relies on Model, View and Controller design.
+
+
 # Main Technologies Used
 
 ## Programing Languages
