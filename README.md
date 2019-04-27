@@ -65,6 +65,15 @@ DB_USER
 DB_PASSWD
 ```
 
+## Google ReCaptcha
+
+File: `.env`
+
+```
+RECAPTCHA_SITE_KEY
+RECAPTCHA_SECRET_KEY
+```
+
 ## Email (for password reset)
 
 File: `.env`
