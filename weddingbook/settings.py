@@ -41,6 +41,7 @@ INSTALLED_APPS = [
     'storages',
     'django_cleanup.apps.CleanupConfig',
     'rest_framework',
+    'captcha',
 ]
 
 MIDDLEWARE = [
@@ -138,8 +139,8 @@ AWS_S3_CUSTOM_DOMAIN = '%s.s3.amazonaws.com' % AWS_STORAGE_BUCKET_NAME
 AWS_S3_OBJECT_PARAMETERS = {
     'CacheControl': 'max-age=86400',
 }
-
 AWS_LOCATION = 'static'
+
 STATICFILES_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
 STATIC_URL = "https://%s/%s/" % (AWS_S3_CUSTOM_DOMAIN, AWS_LOCATION)
 
@@ -158,3 +159,7 @@ EMAIL_PORT = 587
 EMAIL_USE_TLS = True
 EMAIL_HOST_USER = config('EMAIL_USER')
 EMAIL_HOST_PASSWORD = config('EMAIL_PASSWD')
+
+# ReCAPTCHA
+RECAPTCHA_PUBLIC_KEY = config('RECAPTCHA_SITE_KEY')
+RECAPTCHA_PRIVATE_KEY = config('RECAPTCHA_SECRET_KEY')
