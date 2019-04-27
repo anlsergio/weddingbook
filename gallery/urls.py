@@ -20,11 +20,11 @@ urlpatterns = [
     path('gallery/<int:pk>/update/', ImageUpdateView.as_view(), name='image_update'), 
     path('gallery/<int:pk>/delete/', ImageDeleteView.as_view(), name='image_delete'),
 
-    # This url is defined directly here because we want to refer to the root url while using users routes
-    # Instead of doing somethin like users/register users/login, we'll can simply use /login
     path('register/', user_views.register, name='register'), 
 
     path('profile/', user_views.profile, name='profile'), 
+
+    path('about/', views.about, name='about'),
 
     # It's a little bit different because it's a class based view
     # It's optional to specify a template_name to choose the location where Django will search for the template

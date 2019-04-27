@@ -59,7 +59,7 @@ class ImageDetailView(DetailView):
     model = Image
 
 
-class ImageCreateView(CreateView):
+class ImageCreateView(LoginRequiredMixin, CreateView):
     model = Image
     fields = [
         'title',
@@ -150,3 +150,6 @@ class ImageDeleteView(LoginRequiredMixin, UserPassesTestMixin, DeleteView):
         if self.request.user.is_superuser == True:
             return True
         return False
+
+def about(request):
+    return render(request, 'gallery/about.html', {'title': 'About'})

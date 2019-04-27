@@ -13,19 +13,28 @@
     <div class="row d-flex justify-content-center p-2">
       <img alt="Image" src="{{ object.image.url }}" class="card-img-top" />
       <div class="card-block bottom-align">
-        <h5 class="card-title mt-3">{{ object.title | title }}</h5>
+        <h5 class="card-title mt-3 border-bottom">{{ object.title | title }}</h5>
         <div class="article ml-auto">
-          {% if user.is_authenticated %}
-            <a class="like-btn" 
-                data-href="{% url 'api_image_like' object.id %}" 
-                href="{% url 'image_like' object.id %}"
-                data-likes="{{ object.likes.count }}">
-                {% if user in object.likes.all %} Unlike {% else %} Like {% endif %}
-            </a>
+          {% if object.approved %}
+            {% if user.is_authenticated %}
+              <a class="like-btn" 
+                  data-href="{% url 'api_image_like' object.id %}" 
+                  href="{% url 'image_like' object.id %}"
+                  data-likes="{{ object.likes.count }}">
+                  {% if user in object.likes.all %} Unlike {% else %} Like {% endif %}
+              </a>
+            {% endif %}
+              <p class="likes">
+                {{ object.likes.count }} Like{% if object.likes.count > 1 %}s{% endif %}
+              </p>
+          {% else %}
+              <p class="mt-3">
+                Thanks for the Upload! It'll will be shown on our gallery when it's approved
+              </p>
           {% endif %}
-            <p class="likes">
-              {{ object.likes.count }} Like{% if object.likes.count > 1 %}s{% endif %}
-            </p>
+          <p class="mt-3">
+            Uploaded by: {{ object.user.username }}
+          </p>
         </div>
       </div>
     </div>
