@@ -3,9 +3,13 @@
 {% block content %}
 <div class="col-md-12">
     <div class="container content-section">
+        <h4 class="mb-3 text-muted mt-3">
+            Sort by:
+            <a href="{% url 'gallery_home' %}">Date Posted</a> | <a href="{% url 'filtered_gallery_home' %}">Likes</a>
+        </h4>
         <div class="row d-flex justify-content-center">
             {% for image in images %}
-                <a href="#" class="card product col-lg-3">
+                <a href="{% url 'image_detail' image.id %}" class="card product col-lg-3">
                     <img alt="Image" src="{{ image.image.url }}" class="card-img-top">
                     <div class="card-block bottom-align">
                         <h5 class="card-title mt-3">{{ image.title|title }}</h5>
@@ -14,5 +18,24 @@
             {% endfor %}
         </div>
     </div>
+    {% if is_paginated %}
+        {% if page_obj.has_previous %}
+            <a href="?page=1" class="btn btn-outline-info mb-4">First</a>
+            <a href="?page={{ page_obj.previous_page_number }}" class="btn btn-outline-info mb-4">Previous</a>
+        {% endif %}
+
+        {% for num in page_obj.paginator.page_range %}
+            {% if page_obj.number == num %}
+                <a href="?page={{ num }}" class="btn btn-info mb-4">{{ num }}</a>
+            {% elif num > page_obj.number|add:'-3' and num < page_obj.number|add:'3' %}
+                <a href="?page={{ num }}" class="btn btn-outline-info mb-4">{{ num }}</a>
+            {% endif %}
+        {% endfor %}
+
+        {% if page_obj.has_next %}
+            <a href="?page={{ page_obj.next_page_number }}" class="btn btn-outline-info mb-4">Next</a>
+            <a href="?page={{ page_obj.paginator.num_pages }}" class="btn btn-outline-info mb-4">Last</a>
+        {% endif %}
+    {% endif %}
 </div>
 {% endblock content %}
