@@ -8,9 +8,6 @@ from django.db import models
 from django.urls import reverse
 from PIL import Image as Image_PIL
 
-# Create your models here.
-
-
 class Image(models.Model):
     title = models.CharField(max_length=100, default='Image Title')
     user = models.ForeignKey(settings.AUTH_USER_MODEL,
@@ -26,21 +23,13 @@ class Image(models.Model):
 
         super().save(*args, **kwargs)
 
-
-        # During the original image saving
-        # A copy of it will be saved being transformed to a lower size thumbnail
         image = Image_PIL.open(self.image)
-        image.thumbnail((600, 600), Image_PIL.ANTIALIAS)
-        fh = storage.open(self.image.name, "w")
-        format = 'png'  # You need to set the correct image format here
-        image.save(fh, format)
-        fh.close()
-        # img = Image_PIL.open(storage.open(self.image.name))
-        # print(img)
-        # if img.height > 900 or img.width > 900:
-        #    img = img.thumbnail((900, 900))
-        #    print(img)
-        #    img.save(self.image.path)
+        if image.height > 600 or image.width > 600:
+            image.thumbnail((600, 600), Image_PIL.ANTIALIAS)
+            file_buffer = storage.open(self.image.name, "w")
+            format = 'png'
+            image.save(file_buffer, format)
+            file_buffer.close()
 
     def __str__(self):
         return self.title

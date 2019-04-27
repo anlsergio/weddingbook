@@ -70,34 +70,7 @@ class ImageCreateView(LoginRequiredMixin, CreateView):
         form.instance.user = self.request.user
         return super().form_valid(form)
 
-
-class ImageLikeRedirect(RedirectView):
-    permanent = False
-    query_string = True
-    pattern_name = 'image_detail'
-
-    def get_redirect_url(self, *args, **kwargs):
-        image_obj = get_object_or_404(Image, pk=kwargs['pk'])
-
-        user = self.request.user
-
-        if user.is_authenticated:
-            if user in image_obj.likes.all():
-                image_obj.likes.remove(user)
-            else:
-                image_obj.likes.add(user)
-
-        return image_obj.get_absolute_url()
-
-
-
 class ImageLikeAPIToggle(APIView):
-    """
-    View to list all users in the system.
-
-    * Requires token authentication.
-    * Only admin users are able to access this view.
-    """
     authentication_classes = (authentication.SessionAuthentication,)
     permission_classes = (permissions.IsAuthenticated,)
 
@@ -137,14 +110,14 @@ class ImageUpdateView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
     ]
 
     def test_func(self):
-        image = self.get_object() # get from the session the object which the user is trying to update
+        image = self.get_object()
         if self.request.user.is_superuser == True:
             return True
         return False
 
 class ImageDeleteView(LoginRequiredMixin, UserPassesTestMixin, DeleteView):
     model = Image
-    success_url = '/' # You need to define where to go after the deletion succeed
+    success_url = '/'
 
     def test_func(self):
         if self.request.user.is_superuser == True:

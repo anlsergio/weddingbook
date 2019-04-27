@@ -16,17 +16,19 @@
         <h5 class="card-title mt-3 border-bottom">{{ object.title | title }}</h5>
         <div class="article ml-auto">
           {% if object.approved %}
-            {% if user.is_authenticated %}
-              <a class="like-btn" 
-                  data-href="{% url 'api_image_like' object.id %}" 
-                  href="{% url 'image_like' object.id %}"
-                  data-likes="{{ object.likes.count }}">
-                  {% if user in object.likes.all %} Unlike {% else %} Like {% endif %}
-              </a>
-            {% endif %}
-              <p class="likes">
-                {{ object.likes.count }} Like{% if object.likes.count > 1 %}s{% endif %}
-              </p>
+            <div class="row m-0">
+              {% if user.is_authenticated %}
+                <a class="like-btn mr-2" 
+                    data-href="{% url 'api_image_like' object.id %}"
+                    href="#"
+                    data-likes="{{ object.likes.count }}">
+                    {% if user in object.likes.all %} Unlike {% else %} Like {% endif %}
+                </a>
+              {% endif %}
+                <p class="likes">
+                   ({{ object.likes.count }} Like{% if object.likes.count > 1 %}s{% endif %})
+                </p>
+            </div>
           {% else %}
               <p class="mt-3">
                 Thanks for the Upload! It'll will be shown on our gallery when it's approved
