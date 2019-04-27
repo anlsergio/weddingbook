@@ -4,8 +4,8 @@ html, body {
 
 body {
   font-family: 'Dancing Script', cursive;
+  background: #E5E7E0;
   color: #333333;
-  background: #FBECE2;
   margin-top: 5rem;
   display: flex;
   flex-direction: column;
