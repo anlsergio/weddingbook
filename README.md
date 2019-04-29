@@ -32,7 +32,7 @@ This application makes use of the Django MVC pattern, so the whole project relie
 - Python 3.6
 - Django 2.1.8
 
-Check requirements.txt file for the complete list of technologies and libraries used
+Check `requirements.txt` file for the complete list of technologies and libraries used
 
 ## Storage
 
