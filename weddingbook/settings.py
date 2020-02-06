@@ -8,7 +8,6 @@ https://docs.djangoproject.com/en/2.1/ref/settings/
 """
 
 import os, logging.config
-from decouple import config, Csv
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -18,14 +17,12 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 # See https://docs.djangoproject.com/en/2.1/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = config('SECRET_KEY')
+SECRET_KEY = os.getenv('SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = config('DEBUG', default=False, cast=bool)
-# DEBUG = os.getenv('DEBUG', False)
+DEBUG = os.getenv('DEBUG', False)
 
-ALLOWED_HOSTS = config('ALLOWED_HOSTS', cast=Csv())
-# ALLOWED_HOSTS = os.getenv('DJANGO_ALLOWED_HOSTS', '127.0.0.1').split(',')
+ALLOWED_HOSTS = os.getenv('ALLOWED_HOSTS', '127.0.0.1').split(',')
 
 
 # Application definition
@@ -84,10 +81,10 @@ WSGI_APPLICATION = 'weddingbook.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'djongo',
-        'NAME': config('DB_NAME'),
-        'HOST': config('DB_HOST'),
-        'USERNAME': config('DB_PASSWD'),
-        'PASSWORD': config('DB_PASSWD'),
+        'NAME': os.getenv('DB_NAME'),
+        'HOST': os.getenv('DB_HOST'),
+        'USERNAME': os.getenv('DB_PASSWD'),
+        'PASSWORD': os.getenv('DB_PASSWD'),
     }
 }
 
@@ -164,16 +161,16 @@ STATICFILES_DIRS = (
 
 
 # AWS S3 Storage config for assets
-AWS_ACCESS_KEY_ID = config('S3_ACCESS_ID')
-AWS_SECRET_ACCESS_KEY = config('S3_SECRET_KEY')
-AWS_STORAGE_BUCKET_NAME = config('S3_BUCKET_NAME')
+AWS_ACCESS_KEY_ID = os.getenv('S3_ACCESS_ID')
+AWS_SECRET_ACCESS_KEY = os.getenv('S3_SECRET_KEY')
+AWS_STORAGE_BUCKET_NAME = os.getenv('S3_BUCKET_NAME')
 AWS_S3_CUSTOM_DOMAIN = '%s.s3.amazonaws.com' % AWS_STORAGE_BUCKET_NAME
 AWS_S3_OBJECT_PARAMETERS = {
     'CacheControl': 'max-age=86400',
 }
 AWS_DEFAULT_ACL = None
 
-AWS_CLOUDFRONT_DOMAIN = config('AWS_CLOUDFRONT_DOMAIN')
+AWS_CLOUDFRONT_DOMAIN = os.getenv('AWS_CLOUDFRONT_DOMAIN')
 
 MEDIAFILES_LOCATION = 'media'
 MEDIA_ROOT = '/%s/' % MEDIAFILES_LOCATION
@@ -194,12 +191,12 @@ LOGIN_URL = 'login'
 
 # Email settings
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
-EMAIL_HOST = config('EMAIL_HOST')
-EMAIL_PORT = config('EMAIL_PORT')
-EMAIL_USE_TLS = config('EMAIL_USE_TLS')
-EMAIL_HOST_USER = config('EMAIL_USER')
-EMAIL_HOST_PASSWORD = config('EMAIL_PASSWD')
+EMAIL_HOST = os.getenv('EMAIL_HOST')
+EMAIL_PORT = os.getenv('EMAIL_PORT')
+EMAIL_USE_TLS = os.getenv('EMAIL_USE_TLS')
+EMAIL_HOST_USER = os.getenv('EMAIL_USER')
+EMAIL_HOST_PASSWORD = os.getenv('EMAIL_PASSWD')
 
 # ReCAPTCHA
-RECAPTCHA_PUBLIC_KEY = config('RECAPTCHA_SITE_KEY')
-RECAPTCHA_PRIVATE_KEY = config('RECAPTCHA_SECRET_KEY')
+RECAPTCHA_PUBLIC_KEY = os.getenv('RECAPTCHA_SITE_KEY')
+RECAPTCHA_PRIVATE_KEY = os.getenv('RECAPTCHA_SECRET_KEY')

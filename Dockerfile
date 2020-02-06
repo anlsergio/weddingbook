@@ -8,8 +8,8 @@ WORKDIR /weddingbook
 
 ADD . /weddingbook
 
-RUN pip install -r requirements.txt && \ 
-    python manage.py makemigrations && \
-    python manage.py migrate
+RUN pip install -r requirements.txt
+
+ENTRYPOINT [ "./entrypoint.sh" ]
 
 EXPOSE 8000
