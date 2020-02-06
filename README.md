@@ -104,13 +104,6 @@ DEBUG=True/False
 
 # Running the application as a Docker container
 
-## Build image
-
-In order to run this app as a Docker container, you can just run a docker build command to generate an image for the application and it should be good to go.
-
-
-# Running the application as a Docker container
-
 ## Build the Docker image
 
 In order to run this app as a Docker container, you may just run a [docker build](https://docs.docker.com/engine/reference/commandline/build/) command to generate an image for the application and it should be good to go.
