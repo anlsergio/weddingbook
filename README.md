@@ -29,8 +29,6 @@ It also makes use of Django Rest Framework (DRF) for AJAX capabilities.
 
 # Main Technologies Used
 
-## Programing Languages
-
 - Python 3.6
 - Django 2.1.8
 - Django Rest Framework
