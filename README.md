@@ -48,7 +48,7 @@ This project stores all static and media files onto Amazon S3 bucket which are s
 
 - MongoDB through djongo interpreter library
 
-Why MongoDB? A NonSQL database is not the best aproach for this project at all, but I wanted to challenge myself.
+Why MongoDB? A NoSQL database is not the best approach for this project at all, but I wanted to challenge myself.
 
 
 # Parameters (Environment Variables)
