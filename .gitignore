@@ -124,4 +124,4 @@ staticfiles/
 static/
 
 # K8S
-k8s/
+k8s*.yaml
