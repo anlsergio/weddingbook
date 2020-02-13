@@ -1,0 +1,17 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: weddingbook-svc
+  labels:
+    app: weddingbook
+  
+  spec:
+    ports:
+      - port: 80
+        targetPort: 8081
+        protocol: TCP
+        name: http
+    selector:
+      app: weddingbook
+      type: web
+    type: ClusterIP
