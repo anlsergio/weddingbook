@@ -7,10 +7,10 @@ metadata:
     ingress.kubernetes.io/ssl-redirect: "false"
     nginx.ingress.kubernetes.io/ssl-redirect: "true"
     nginx.ingress.kubernetes.io/force-ssl-redirect: "true"
-    external-dns.alpha.kubernetes.io/hostname: asergio-weddingbook.qa.crossknowledge.net
+    external-dns.alpha.kubernetes.io/hostname: url_to_be_added_into_dns_records.com
 spec:
   rules:
-  - host: asergio-weddingbook.qa.crossknowledge.net
+  - host: url_to_be_added_into_dns_records.com
     http:
       paths:
       - backend:
