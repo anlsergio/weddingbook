@@ -4,7 +4,6 @@
 __pycache__
 .DS_Store
 .vscode
-README.md
 
 # Byte-compiled / optimized / DLL files
 __pycache__/
@@ -123,3 +122,6 @@ content.json
 *.png
 staticfiles/
 static/
+
+# K8S
+k8s*.yaml

@@ -2,7 +2,7 @@ FROM python:3.6
 
 ENV PYTHONBUFFERED 1
 
-EXPOSE 8081
+EXPOSE 8080
 
 RUN mkdir /weddingbook
 
