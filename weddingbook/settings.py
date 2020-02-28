@@ -194,8 +194,8 @@ EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 EMAIL_HOST = os.getenv('EMAIL_HOST')
 EMAIL_PORT = os.getenv('EMAIL_PORT')
 EMAIL_USE_TLS = True if os.getenv('EMAIL_USE_TLS') == 'True' else False
-EMAIL_HOST_USER = os.getenv('EMAIL_USER')
-EMAIL_HOST_PASSWORD = os.getenv('EMAIL_PASSWD')
+EMAIL_HOST_USER = '' if os.getenv('EMAIL_USER') == 'None' else os.getenv('EMAIL_USER')
+EMAIL_HOST_PASSWORD = '' if os.getenv('EMAIL_PASSWD') == 'None' else os.getenv('EMAIL_PASSWD')
 
 # ReCAPTCHA
 RECAPTCHA_PUBLIC_KEY = os.getenv('RECAPTCHA_SITE_KEY')
