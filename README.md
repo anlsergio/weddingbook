@@ -1,5 +1,7 @@
 # WeddingBook
 
+![build](https://github.com/andersonLSergio/weddingbook/workflows/Build%20and%20Publish%20to%20Docker%20Registry/badge.svg)
+
 This website is a wedding image gallery which includes the following features:
 
 Public (non-authenticated) users can:
