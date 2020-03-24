@@ -1,6 +1,6 @@
 # WeddingBook
 
-[![Build and Publish to Docker Registry](https://github.com/andersonLSergio/weddingbook/workflows/Build%20and%20Publish%20to%20Docker%20Registry/badge.svg)](https://github.com/andersonLSergio/weddingbook/actions)
+[![Build and Publish to Docker Registry](https://github.com/andersonLSergio/weddingbook/workflows/Build%20and%20Publish%20to%20Docker%20Registry/badge.svg)](https://github.com/andersonLSergio/weddingbook/actions?query=workflow%3A%22Build+and+Publish+to+Docker+Registry%22)
 
 This website is a wedding image gallery which includes the following features:
 
